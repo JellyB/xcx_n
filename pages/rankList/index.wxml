@@ -1,0 +1,49 @@
+<view class="page">
+  <i-spin fix size="large" wx:if="{{loading}}"></i-spin>
+
+<!-- 增加
+  <scroll-view class="body-h" scroll-x>
+    <text space="emsp">   答题人   得分    用时</text>
+  </scroll-view> -->
+
+  <scroll-view class='messScroll' scroll-y bindscrolltolower="lower" bindscrolltolower="getBottom">
+    <view class='rankList' wx:for="{{rankList}}" bindtap='showDetail' data-index="{{index}}">
+      <view class="item">
+        <image class="userPhoto" src="{{item.user.avatarUrl}}" />
+
+
+        <view class='middle'>
+          {{item.user.nickName}}
+        </view>
+        <view class='score'>
+         得分: {{item.score}}分
+        </view>
+
+        <!-- 取答题完成时间 -->
+        <view class='score'>
+         用时: {{item.secondOver}}s
+        </view>
+
+
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 增加 -->
+<!-- <view class='page'> -->
+  <!-- <i-spin fix size="large" wx:if="{{loading}}"></i-spin> -->
+ <!-- <view class='header'> -->
+    <!-- <view class='score'>
+      <text style='font-size:52rpx;font-weight:bold;'>{{score}}</text>/{{total}}分
+    </view>
+    <view class='statistics'>
+      <view class='word'>
+        <view>击败人数</view>
+        <view class="beatNum">{{beatNum}}人</view>
+      </view>
+      <view class='word'>
+        <view>平均分</view>
+        <view class="beatNum">{{average}}分</view>
+      </view>
+    </view> -->

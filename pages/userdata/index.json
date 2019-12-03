@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "答题人登记",
+  "usingComponents": {
+    "i-input": "../../dist/input/index",
+    "i-panel": "../../dist/panel/index",
+    "i-button": "../../dist/button/index"
+  }
+}
+
