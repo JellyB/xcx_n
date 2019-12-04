@@ -101,21 +101,57 @@ const getMenuById =(id)=>{
 /**
  * 获取题目
  * menuId:套题id
- * questionNum:题目数量
+ * questionNum:题目数量，如果不为 300，按300处理
  */
 const getQuestions = (menuId,questionNum) => {
+  if(questionNum != 300){
+    questionNum = 300;
+  }
   return new Promise((resolve, reject) => {
     const query = wx.Bmob.Query('questions');
     query.equalTo('menu','==',menuId);
     query.limit(parseInt(questionNum))
     query.find().then(res=>{
-      res.sort(function (a, b) {
+
+      var res_single = [];
+      var res_multi = [];
+      var res_check = [];
+      var res_random = [];
+
+      for (let i = 0; i < res.length; i++ ) {
+        var item = res[i];
+        if(item.type == '2'){
+          res_multi.push(item);
+        }else if(item.type == '1' && item.choseList.length == 2){
+          res_check.push(item);
+        }else{
+          res_single.push(item);
+        }
+      }
+     
+      // console.log(res_single);
+      // console.log(res_multi);
+      // console.log(res_check);
+
+      res_random = res_random.concat(res_single.slice(0, 30));
+      res_random = res_random.concat(res_multi.slice(0, 10));
+      res_random = res_random.concat(res_check.slice(0, 10));
+
+      // console.log(res_random);
+      // console.log("res ------ radom")
+      res_random.sort(function (a, b) {
         return Math.random() - 0.5;
       });
-      
+      // res_multi.sort(function (a, b) {
+      //   return Math.random() - 0.5;
+      // });
+      // res_check.sort(function (a, b) {
+      //   return Math.random() - 0.5;
+      // });
+    
       //console.log(res)
       resolve({
-        'result':res
+        'result':res_random
       })
     })
   })
