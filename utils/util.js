@@ -551,6 +551,7 @@ const getHistoryList =()=>{
     const query = wx.Bmob.Query('history')
     query.equalTo('user','==',uid)
     query.equalTo('saveStatus', '==', 1)
+    query.limit(50)
     query.order('-createdAt')
     query.find().then(res=>{
       console.log(res.length)
