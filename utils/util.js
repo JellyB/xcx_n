@@ -128,10 +128,17 @@ const getQuestions = (menuId,questionNum) => {
           res_single.push(item);
         }
       }
-     
-      // console.log(res_single);
-      // console.log(res_multi);
-      // console.log(res_check);
+      
+      res_single.sort(function (a, b) {
+        return Math.random() - 0.5;
+      });
+      res_multi.sort(function (a, b) {
+        return Math.random() - 0.5;
+      });
+      res_check.sort(function (a, b) {
+        return Math.random() - 0.5;
+      });
+
 
       res_random = res_random.concat(res_single.slice(0, 30));
       res_random = res_random.concat(res_multi.slice(0, 10));
@@ -139,9 +146,9 @@ const getQuestions = (menuId,questionNum) => {
 
       // console.log(res_random);
       // console.log("res ------ radom")
-      res_random.sort(function (a, b) {
-        return Math.random() - 0.5;
-      });
+      // res_random.sort(function (a, b) {
+      //   return Math.random() - 0.5;
+      // });
       // res_multi.sort(function (a, b) {
       //   return Math.random() - 0.5;
       // });
