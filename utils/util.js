@@ -112,7 +112,8 @@ const getQuestions = (menuId,questionNum) => {
       res.sort(function (a, b) {
         return Math.random() - 0.5;
       });
-      console.log(res)
+      
+      //console.log(res)
       resolve({
         'result':res
       })
