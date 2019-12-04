@@ -109,6 +109,10 @@ const getQuestions = (menuId,questionNum) => {
     query.equalTo('menu','==',menuId);
     query.limit(parseInt(questionNum))
     query.find().then(res=>{
+      res.sort(function (a, b) {
+        return Math.random() - 0.5;
+      });
+      console.log(res)
       resolve({
         'result':res
       })
